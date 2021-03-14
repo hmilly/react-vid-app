@@ -33,10 +33,7 @@ function App() {
         "db.json"
         //   "https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get%3Anew7-!1900%2C2018-!0%2C5-!0%2C10-!0-!Any-!Any-!Any-!gt100-!%7Bdownloadable%7D&t=ns&cl=all&st=adv&ob=Relevance&p=1&sa=and", {
         //   "method": "GET",
-        //   "headers": {
-        //     "x-rapidapi-key": "913de05a45msh54fc6f8e3af3e38p1dee38jsn3ffd02829c6f",
-        //     "x-rapidapi-host": "unogs-unogs-v1.p.rapidapi.com"
-        //   }
+
         // }
       )
         .then(res => res.json())
