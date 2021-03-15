@@ -1,23 +1,33 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
-export default function MainVid({films}) {
-//     const [mostPopular, setMostPopular] = useState({})
+export default function MainVid({ data }) {
 
-//  useEffect(() => {
-     
-//     const mostPopularFilm = films.reduce((prev, curr) =>
-//         prev.download > curr.download ? curr : prev
-//       )
-//       setMostPopular(mostPopularFilm)
+    const [mostPopular, setMostPopular] = useState({})
 
-//     console.log(mostPopular)
-//   }, [])
+    useEffect(() => {
+        const getMostPopular = async (mostPopular) => {
+            const mostPopularFilm = await data.reduce((prev, curr) =>
+                (prev.download > curr.download) ? prev : curr, 1
+            )
+            setMostPopular(mostPopularFilm)
+        }
+        getMostPopular()
+       
+    }, [data])
+ console.log(mostPopular)
+
+    //  useEffect(() => {
+
+
+
+    //     console.log(mostPopular)
+    //   }, [])
 
 
     return (
-        
+
         < div className="mainvid" >
-            <img src="https://s8v8k3v9.stackpathcdn.com/wp-content/uploads/2019/04/ultra-movie-poster-design-top.jpg" alt="film"></img>
+            <img src={mostPopular.largeimage} alt="film"></img>
         </div >
     )
 }

@@ -1,37 +1,8 @@
 
 *{
   box-sizing: border-box;
+  margin: 0;
 }
-
-.nav{
-  display: flex;
-  width: 50%;
-  align-self: flex-start;
-  padding-top: 1%;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0);
-
-}
-
-.nav a{
-  margin: auto;
-  font-size: 16px;
-  color: white;
-  text-decoration: none;
-  width: 12%;
-  text-align: center;
-  border-radius: 5px;
-}
-.nav a:visited{
-  color: white;
-  text-decoration: none;
-}
-.nav a:hover{
-  border-bottom: 1px solid rgb(0, 110, 255);
-  background-color: rgba(0, 38, 255, 0.411);
-  cursor: pointer;
-}
-
 
 .App {
   display: flex;
@@ -42,33 +13,79 @@
   height: auto;
   margin: 0 auto;
   overflow-x: scroll;
+  justify-content: flex-start;
 }
+
+.nav{
+  display: flex;
+  width: 55%;
+  align-self: flex-start;
+  white-space: nowrap;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0;
+}
+
+.nav a{
+ margin: auto;
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  width: 20%;
+  padding: 2%;
+  text-align: center;
+  border-radius: 5px;
+}
+.nav a:visited{
+  color: white;
+  text-decoration: none;
+}
+.nav a:hover{
+  color: rgba(255, 255, 255, 0.7);
+
+  cursor: pointer;
+}
+
+
+
 
 
 .mainvid{
-  width: 100%;
-  height:auto;
+  margin-top: 4%;
+  width: 90%;
+  height:98%;
+  align-self: center;
 }
 .mainvid img{
-  width: 1000px;
-  height:auto;
+  width: 100%;
 }
 
-.films, .series{
-  border: solid green 1px;
+
+.category-name{
+  color: white;
+  padding: 5px 2%;
+}
+
+.scrolling-div{
   display: flex;
-  width: 90%;
+  width: 98%;
   overflow-x:scroll;
-  }
+}
 
-.eachvid, .eachseries{
+.scrolling-div::-webkit-scrollbar{
+  display: none;
+}
 
+.title{
   width: 200px;
   height: auto;
-  border: solid red 1px;
-  padding: 0 5%;
+  padding: 1%;
 }
 
-.eachvid img, .eachseries img{
+.title img{
   width: 150px;
-  }
+}
+.title img:hover{
+  cursor: pointer;
+  padding: 2%;
+}
