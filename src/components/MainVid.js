@@ -4,17 +4,18 @@ export default function MainVid({ data }) {
 
     const [mostPopular, setMostPopular] = useState({})
 
+
     useEffect(() => {
-        const getMostPopular = async (mostPopular) => {
-            const mostPopularFilm = await data.reduce((prev, curr) =>
-                (prev.download > curr.download) ? prev : curr, 1
-            )
-            setMostPopular(mostPopularFilm)
+        const getMostPopular = async () => {
+            if (data) {
+                const mostPopularFilm = await data.reduce((prev, curr) =>
+                    (prev.download > curr.download) ? prev : curr, 1
+                )
+                setMostPopular(mostPopularFilm)
+            }
         }
         getMostPopular()
-       
     }, [data])
- console.log(mostPopular)
 
     //  useEffect(() => {
 
@@ -25,7 +26,6 @@ export default function MainVid({ data }) {
 
 
     return (
-
         < div className="mainvid" >
             <img src={mostPopular.largeimage} alt="film"></img>
         </div >

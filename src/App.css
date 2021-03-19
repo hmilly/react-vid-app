@@ -3,6 +3,9 @@
   box-sizing: border-box;
   margin: 0;
 }
+*::-webkit-scrollbar{
+  display: none;
+}
 
 .App {
   display: flex;
@@ -13,8 +16,10 @@
   height: auto;
   margin: 0 auto;
   overflow-x: scroll;
+  overflow-y: none;
   justify-content: flex-start;
 }
+
 
 .nav{
   display: flex;
@@ -42,7 +47,6 @@
 }
 .nav a:hover{
   color: rgba(255, 255, 255, 0.7);
-
   cursor: pointer;
 }
 
@@ -51,13 +55,15 @@
 
 
 .mainvid{
-  margin-top: 4%;
-  width: 90%;
-  height:98%;
+  margin-top: 5%;
+  width: 60%;
+ height: 900px;
   align-self: center;
+  overflow: hidden;
 }
 .mainvid img{
-  width: 100%;
+  min-width:100%;
+  margin-top: -120px;
 }
 
 
@@ -72,20 +78,32 @@
   overflow-x:scroll;
 }
 
-.scrolling-div::-webkit-scrollbar{
-  display: none;
-}
 
 .title{
-  width: 200px;
+  width: 220px;
   height: auto;
   padding: 1%;
 }
 
-.title img{
+.normalImg{
   width: 150px;
 }
-.title img:hover{
+.largeImg{
+  width: 200px;
+}
+.normalImg:hover, .largeImg:hover{
   cursor: pointer;
   padding: 2%;
 }
+
+
+
+.title-details{
+  display: block;
+  position: relative;
+  background: blue;
+  width: 100%;
+  padding: 1%;
+  overflow: hidden;
+}
+

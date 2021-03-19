@@ -1,7 +1,8 @@
 //import logo from './logo.svg';
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
-  BrowserRouter as Router} from "react-router-dom";
+  BrowserRouter as Router
+} from "react-router-dom";
 import './App.css';
 import Nav from './components/Nav';
 
@@ -24,16 +25,20 @@ function App() {
     getItems()
   }, [])
 
+
+
   return (
     <Router>
       <div className="App">
         <Nav />
 
         <MainVid data={data.films} />
-        <ScrollingDiv category={"Films"} data={data.films}/>
-        <ScrollingDiv category={"Series"} data={data.series}/>
-
-
+        <div className="categorys">
+          <ScrollingDiv category={"Films"} data={data.films} largeRow={true}/>
+          <ScrollingDiv category={"Series"} data={data.series} />
+          <ScrollingDiv category={"Films"} data={data.films} />
+          <ScrollingDiv category={"Series"} data={data.series} />
+        </div>
       </div>
     </Router>
   );
