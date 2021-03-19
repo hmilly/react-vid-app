@@ -18,6 +18,7 @@
   overflow-x: scroll;
   overflow-y: none;
   justify-content: flex-start;
+  
 }
 
 
@@ -99,11 +100,79 @@
 
 
 .title-details{
-  display: block;
-  position: relative;
-  background: blue;
-  width: 100%;
-  padding: 1%;
+  background: rgba(0, 0, 0, 0.768);
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  width: 98%;
+  margin: 1%;
+ height: 1500px;
+  padding: 2% 10%;
   overflow: hidden;
 }
+.title-btn{
+position: absolute;
+right: 15%;
+top: 0;
+padding: 1% 1.5%;
+font-size: 20px;
+font-weight: bolder;
+border-radius: 50%;
+background-color: black;
+color: white;
+}
+.title-btn:hover{
+  cursor: pointer;
+}
+.title-img-div{
+  width: 900px;
+  margin-top: -200px;
+  overflow: hidden;
+}
+.titleImg{
+  width: 100%;
+  margin-top: -200px;
+}
 
+.title-name{
+  position: absolute;
+  color: #070096;
+  text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5,
+  -2px 2px 0 #4074b5, -2px -2px 0 #4074b5,
+   2px 0px 0 #4074b5, 0px 2px 0 #4074b5,
+    -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;
+  font-size: 100px;
+  top: 40%;
+  left: 23%;
+}
+
+.title-details-div{
+  display: flex;
+  width: 72%;
+  color: white;
+  padding: 2%;
+  background-color: black;
+}
+.title-h3{
+  color: green;
+padding-right: 8%;
+font-size: 40px;
+}
+.title-details-div h3{
+  font-size: 40px;
+  width: 33%;
+  display: flex;
+  text-align: center;
+  color: white;
+}
+
+
+.title-synop{
+  font-size: 20px;
+  padding: 2%;
+  color: white;
+  font-size: 40px;
+  width: 70%;
+  background-color: black;
+}

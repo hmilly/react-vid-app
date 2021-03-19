@@ -5,15 +5,14 @@ import {
 } from "react-router-dom";
 import './App.css';
 import Nav from './components/Nav';
-
 import MainVid from "./components/MainVid"
-
 import ScrollingDiv from "./components/ScrollingDiv"
 
 
 function App() {
 
   const [data, setData] = useState([])
+  const [selectedItem, setSelectedItem] = useState()
 
   useEffect(() => {
     const getItems = async () => {
@@ -27,6 +26,7 @@ function App() {
 
 
 
+
   return (
     <Router>
       <div className="App">
@@ -34,10 +34,11 @@ function App() {
 
         <MainVid data={data.films} />
         <div className="categorys">
-          <ScrollingDiv category={"Films"} data={data.films} largeRow={true}/>
-          <ScrollingDiv category={"Series"} data={data.series} />
-          <ScrollingDiv category={"Films"} data={data.films} />
-          <ScrollingDiv category={"Series"} data={data.series} />
+          {selectedItem}
+          <ScrollingDiv category={"Films"} data={data.films} largeRow={true} set={setSelectedItem}/>
+          <ScrollingDiv category={"Series"} data={data.series} set={setSelectedItem} />
+          <ScrollingDiv category={"Films"} data={data.films} set={setSelectedItem} />
+          <ScrollingDiv category={"Series"} data={data.series} set={setSelectedItem} />
         </div>
       </div>
     </Router>
