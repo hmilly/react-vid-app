@@ -1,4 +1,3 @@
-//import logo from './logo.svg';
 import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router
@@ -8,9 +7,7 @@ import Nav from './components/Nav';
 import MainVid from "./components/MainVid"
 import ScrollingDiv from "./components/ScrollingDiv"
 
-
 function App() {
-
   const [data, setData] = useState([])
   const [selectedItem, setSelectedItem] = useState()
 
@@ -23,9 +20,6 @@ function App() {
     }
     getItems()
   }, [])
-
-
-
 
   return (
     <Router>

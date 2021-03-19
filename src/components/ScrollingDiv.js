@@ -3,7 +3,11 @@ import React, { useState, useEffect } from 'react'
 export default function ScrollingDiv({ category, data, largeRow, set }) {
   const [items, setItems] = useState([])
 
-  // const [itemDiv, setItemDiv] = useState()
+  useEffect(() => {
+    const getAllItems = async () =>
+      await setItems(data)
+    getAllItems()
+  }, [data])
 
   const clicked = (title) => {
     set(
@@ -26,19 +30,11 @@ export default function ScrollingDiv({ category, data, largeRow, set }) {
     )
   }
 
-  useEffect(() => {
-    const getAllItems = async () =>
-      await setItems(data)
-    getAllItems()
-  }, [data])
-
-
   let allItems
   if (items) {
     allItems =
       items.map((title, i) => (
-        <div className="title" onClick={(e) => { clicked(title) }}
-        >
+        <div className="title" onClick={(e) => { clicked(title)}}>
           <img src={title.image} alt={title.title} className={largeRow ? "largeImg" : "normalImg"}></img>
         </div>
       ))
@@ -46,13 +42,10 @@ export default function ScrollingDiv({ category, data, largeRow, set }) {
 
   return (
     <>
-
       <h1 className="category-name">{category}</h1>
       <div className="scrolling-div">
         {allItems}
       </div>
-
-
     </>
   )
 }
