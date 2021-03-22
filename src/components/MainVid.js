@@ -18,14 +18,12 @@ export default function MainVid({ data }) {
         getMostPopular()
     }, [data])
 
-
-
     return (
         < div className="mainvid" >
             <ReactPlayer
                 className="vid"
-                url={`https://www.youtube.com/watch?v=${mostPopular.youtube_trailer_key}?enablejsapi=1&origin=http://http://localhost:3000/`}
-                
+                url={`https://www.youtube.com/embed/${mostPopular.youtube_trailer_key}`}
+
             />
         </div>
     )

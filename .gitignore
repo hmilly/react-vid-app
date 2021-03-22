@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # keys
+   "x-rapidapi-key": "913de05a45msh54fc6f8e3af3e38p1dee38jsn3ffd02829c6f",
+    "x-rapidapi-host": "movies-tvshows-data-imdb.p.rapidapi.com"

@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import {
-	BrowserRouter as Router,
-	Switch,
-	Route
+  BrowserRouter as Router,
+  Switch,
+  Route
 } from "react-router-dom";
 import './App.css';
 import Nav from './components/Nav';
 import MainVid from "./components/MainVid"
 import ScrollingDiv from "./components/ScrollingDiv"
+import ClickedVid from "./components/ClickedVid"
 
 function App() {
   const [data, setData] = useState([])
-  const [selectedItem, setSelectedItem] = useState()
+  const [selectedItem, setSelectedItem] = useState({})
 
   useEffect(() => {
     const getItems = async () => {
@@ -19,7 +20,7 @@ function App() {
         //   //  fetch("https://movies-tvshows-data-imdb.p.rapidapi.com/?type=get-random-movies&page=6", {
         //   //   "method": "GET",
         //   //   "headers": {
-// -------------------------------- in git ignore if needed -----------------------------------------
+        // -------------------------------- update key info  -----------------------------------------
         //   //   }
         //   // })
         .then(res => res.json())
@@ -59,39 +60,37 @@ function App() {
 
           </Route> */}
           <Route path="/films">
-          <div className="categorys">
-            <ScrollingDiv genre={"Action"} data={data.Action} largeRow={true} set={setSelectedItem} />
-            <ScrollingDiv genre={"Adventure"} data={data.Adventure} set={setSelectedItem} />
-            <ScrollingDiv genre={"Comedy"} data={data.Comedy} set={setSelectedItem} />
-            <ScrollingDiv genre={"Drama"} data={data.Drama} set={setSelectedItem} />
-            <ScrollingDiv genre={"Family"} data={data.Family} set={setSelectedItem} />
-            <ScrollingDiv genre={"Fantasy"} data={data.Fantasy} set={setSelectedItem} />
-            <ScrollingDiv genre={"Horror"} data={data.Horror} set={setSelectedItem} />
-            <ScrollingDiv genre={"Mystery"} data={data.Mystery} set={setSelectedItem} />
-            <ScrollingDiv genre={"Romance"} data={data.Romance} set={setSelectedItem} />
-            <ScrollingDiv genre={"SciFi"} data={data.SciFi} set={setSelectedItem} />
-            <ScrollingDiv genre={"Thriller"} data={data.Thriller} set={setSelectedItem} />
+            <div className="categorys">
+              <ScrollingDiv genre={"Action"} data={data.Action} largeRow={true} set={setSelectedItem} />
+              <ScrollingDiv genre={"Adventure"} data={data.Adventure} set={setSelectedItem} />
+              <ScrollingDiv genre={"Comedy"} data={data.Comedy} set={setSelectedItem} />
+              <ScrollingDiv genre={"Drama"} data={data.Drama} set={setSelectedItem} />
+              <ScrollingDiv genre={"Family"} data={data.Family} set={setSelectedItem} />
+              <ScrollingDiv genre={"Fantasy"} data={data.Fantasy} set={setSelectedItem} />
+              <ScrollingDiv genre={"Horror"} data={data.Horror} set={setSelectedItem} />
+              <ScrollingDiv genre={"Mystery"} data={data.Mystery} set={setSelectedItem} />
+              <ScrollingDiv genre={"Romance"} data={data.Romance} set={setSelectedItem} />
+              <ScrollingDiv genre={"SciFi"} data={data.SciFi} set={setSelectedItem} />
+              <ScrollingDiv genre={"Thriller"} data={data.Thriller} set={setSelectedItem} />
             </div>
           </Route>
           <Route path="/series">
-          <div className="categorys">
-            <ScrollingDiv genre={"Crime"} data={data.Crime} largeRow={true} set={setSelectedItem} />
-            <ScrollingDiv genre={"Documentary"} data={data.Documentary} set={setSelectedItem} />
-            <ScrollingDiv genre={"Short"} data={data.Short} set={setSelectedItem} />
-            <ScrollingDiv genre={"Sport"} data={data.Sport} set={setSelectedItem} />
-            <ScrollingDiv genre={"TVMovie"} data={data.TVMovie} set={setSelectedItem} />
-            <ScrollingDiv genre={"War"} data={data.War} set={setSelectedItem} />
+            <div className="categorys">
+              <ScrollingDiv genre={"Crime"} data={data.Crime} largeRow={true} set={setSelectedItem} />
+              <ScrollingDiv genre={"Documentary"} data={data.Documentary} set={setSelectedItem} />
+              <ScrollingDiv genre={"Short"} data={data.Short} set={setSelectedItem} />
+              <ScrollingDiv genre={"Sport"} data={data.Sport} set={setSelectedItem} />
+              <ScrollingDiv genre={"TVMovie"} data={data.TVMovie} set={setSelectedItem} />
+              <ScrollingDiv genre={"War"} data={data.War} set={setSelectedItem} />
             </div>
           </Route>
           <Route path="/">
-            {selectedItem}
+            {selectedItem?.title ? <ClickedVid title={selectedItem} set={setSelectedItem} /> : null}
             <MainVid data={data} />
             <div className="categorys">
               <ScrollingDiv genre={"Comedy"} data={data.Comedy} largeRow={true} set={setSelectedItem} />
               <ScrollingDiv genre={"Crime"} data={data.Crime} set={setSelectedItem} />
-              <ScrollingDiv genre={"Documentary"} data={data.Documentary} set={setSelectedItem} />
               <ScrollingDiv genre={"Drama"} data={data.Drama} set={setSelectedItem} />
-              <ScrollingDiv genre={"History"} data={data.History} set={setSelectedItem} />
               <ScrollingDiv genre={"Horror"} data={data.Horror} set={setSelectedItem} />
               <ScrollingDiv genre={"Mystery"} data={data.Mystery} set={setSelectedItem} />
               <ScrollingDiv genre={"Romance"} data={data.Romance} set={setSelectedItem} />
