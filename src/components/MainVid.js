@@ -21,7 +21,7 @@ export default function MainVid({ data }) {
     return (
         < div className="mainvid" >
             <ReactPlayer
-                className="vid"
+                className="m-vid"
                 url={`https://www.youtube.com/embed/${mostPopular.youtube_trailer_key}`}
 
             />

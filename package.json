@@ -6,16 +6,23 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
+    "bufferutil": "^4.0.3",
+    "canvas": "^2.7.0",
     "expo-video-thumbnails": "^5.0.0",
+    "node": "^15.10.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-native": "^0.64.0",
     "react-native-thumbnail-video": "^0.1.2",
     "react-player": "^2.9.0",
+    "react-refresh": "^0.9.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "type-fest": "^0.21.3",
     "typescript": "^4.2.3",
-    "web-vitals": "^1.1.0"
+    "utf-8-validate": "^5.0.4",
+    "web-vitals": "^1.1.0",
+    "webpack-hot-middleware": "^2.25.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,7 +48,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.13.0"
-  }
+  "devDependencies": {}
 }
