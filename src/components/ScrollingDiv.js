@@ -7,6 +7,8 @@ export default function ScrollingDiv({ genre, data, largeRow, set }) {
 
   const hover = (e, title) => {
     if (e.target.className === "large-vid") {
+      let runTime = title.runtime - 60 < 60 ? `1h ${title.runtime - 60}m` : `${title.runtime}m`
+      let genre = title.genres.map(g => `<p>${g}</p>`).join('')
       e.target.className = "small-vid"
       e.target.innerHTML += `
 <div class="hover">
@@ -18,30 +20,20 @@ export default function ScrollingDiv({ genre, data, largeRow, set }) {
       <p>D</p>
     </div>
     <div class="hover-rating">
-      <p>${title.imdb_rating}% match</p>
+      <p >${title.imdb_rating}% match</p>
       <p>${title.rated}</p>
-      <p>${title.runtime - 60 < 60 ? `1h ${title.runtime - 60}m` : `${title.runtime}m`}</p>
+      <p>${runTime}</p>
     </div>
     <div class="hover-genre">
-      ${title.genres.map(g => g !== "," ? `<p>${g}</p>` : null)}
+      ${genre}
     </div>
   </div>
   <div class="hover-div-r">
   <p>v</p>
   </div>
 </div>`
-    } else if (e.target.className === "normal-vid") {
-      e.target.className += " n-hover-title"
     }
   }
-  // const hover = (e) => {
-  //   console.log(e.target)
-  //   if (e.target.className === "large-vid") {
-  //     e.target.className += " l-hover-title"
-  //   } else if (e.target.className === "normal-vid") {
-  //     e.target.className += " n-hover-title"
-  //   }
-  // }
 
   const hoverOut = (e) => {
     if (e.target.className.includes("l-hover-title")) {
