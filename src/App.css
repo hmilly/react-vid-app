@@ -60,7 +60,6 @@
   min-width:100%;
   width: 100%;
   min-height: 800px;
-
 }
 
 .category-name{
@@ -70,120 +69,104 @@
 
 .scrolling-div{
   display: flex;
-  position: relative;
   width: 98%;
-  height: 250px;
   overflow-x:scroll;
-  margin: 0 3%;
-  overflow-y:hidden;
-}
-
-.title{
-  position: relative;
-  max-width: 402px;
-  max-height: 353px;
-  height: 100%;
-  margin: 0 4px;
+  margin: 0 1%;
 }
 
 
+.normal-vid{
+  min-width: 300px;
+  min-height: 250px;
+}
+.large-vid{
+  min-width: 402px;
+  min-height: 353px;
+}
+/* 
+.normal-vid:hover, .large-vid:hover{
+  cursor: pointer;
+  padding: 2%; 
+} */
 
-.small-vid{
-  border: solid red 1px;
-  display: block;
-  position: relative;
-  max-width: 450px;
-  max-height: 350px;
-  height: 100%;
-  margin-top: -12%;
-  margin-left: -6%;
-  padding: -20% -10%;
-  transition: 400ms;
-  overflow: visible;
+
+.player{
+  padding: 15% 2%;
+  margin-top: -9%;
+  margin-left: 4%;
+  transition: 200ms;
 }
 
 .hover{
-  display: block;
-  position: absolute;
-  border: solid red 1px;
-  margin-top: -10%;
-  width: 450px;
-  height: 200px;
-  z-index: 9;
-}
-.hover-div-l{
-  position: absolute;
   display: flex;
-  background: black;
+}
+.hover-vid{
+  padding: 15% 0;
+  margin-top: -15%;
+  margin-left: 2%;
+}
+
+.hover-div-l{
+  display: flex;
   flex-direction: column;
   color:white;
-  width: 60%;
+  width: 70%;
   height: 90px;
-
 }
 .hover-div-r{
-  position: absolute;
   display: flex;
   flex-direction: column;
   color:white;
   align-items: flex-end;
-  padding: 4%;
-  width: 40%;
+  padding: 2%;
+  width: 30%;
+  height: 90px;
 }
-.hover-div-r p, .hover-details p{
+.hover-div-r p{
   border-radius: 50%;
-  padding: 4% 9%;
+  padding: 1px 8px;
   border: solid 1px white;
-}
-.hover-details p{
-  margin-top: 2%;
-  padding: 2% 5%;
-}
-.hover-rating p:nth-child(1){
-  color: green;
-  font-weight: 700;
-}
-.hover-rating p:nth-child(2){
-  border-radius: 50%;
-  border: solid 1px white;
-  padding: 1% 1%;
-  width: 14%;
-  text-align: center;
-  font-weight: 400;
-  background-color: red;
 }
 .hover-details, .hover-rating, .hover-genre{
   display: flex;
   width: 100%;
-  padding: 1% 3%;
-  justify-content: space-around;
+  padding: 2% 5%;
+  justify-content: flex-start;
 }
-
-
-
-
-.large-vid{
-  max-width: 400px;
-  max-height: 300px;
-  padding: 9% 0;
-  transition: 200ms;
+.hover-details p{
+  border: white solid 1px;
+  background-color: rgba(128, 128, 128, 0.349);
+  border-radius: 50%;
+  text-align: center;
+  padding: 4px;
+  width: 30px;
+  margin-right: 10px;
 }
-.large-vid:hover{
-  cursor: pointer;
-  padding: 11% 2%;
+.hover-details p:nth-child(1){
+  border: white solid 1px;
+  background-color: white;
+  color: grey;
 }
-
-.normal-vid{
-  max-width: 300px;
-  max-height: 250px;
-  padding: 15% 0;
-  transition: 200ms;
+.hover-rating p{
+  margin-right: 6px;
 }
-.normal-vid:hover{
-  cursor: pointer;
-  padding: 17% 2%; 
+.hover-rating p:nth-child(1){
+  color: green;
+  font-weight: 600;
 }
-
+.hover-rating p:nth-child(2){
+  border: white solid 1px;
+  background-color: red;
+  border-radius: 50%;
+  padding: 1px 0;
+  margin-top: -4px;
+  width: 27px;
+  text-align: center;
+}
+.hover-genre p{
+  margin-top: -4px;
+  margin-right: 8px;
+}
 
 .title-details{
   background: rgba(0, 0, 0, 0.836);
