@@ -5,46 +5,31 @@ export default function ScrollingDiv({ genre, data, largeRow, set }) {
   const [items, setItems] = useState([])
   const [hoveredItem, setHoveredItem] = useState()
 
-  const hover = (e, title) => {
+  const hover = (e) => {
+    console.log(e)
     if (e.target.className === "player" && !hoveredItem) {
+      setHoveredItem(true)
       e.target.className = "hover-vid"
-      e.target.innerHTML += `
-<div class="hover">
-  <div class="hover-div-l">
-    <div class="hover-details">
-      <p>P</p>
-      <p>L</p>
-      <p>U</p>
-      <p>D</p>
-    </div>
-    <div class="hover-rating">
-      <p>${title.imdb_rating}% match</p>
-      <p>${title.rated}</p>
-      <p>${title.runtime - 60 < 60 ? `1h ${title.runtime - 60}m` : `${title.runtime}m`}</p>
-    </div>
-    <div class="hover-genre">
-      ${title.genres.map((g) => `<p>${g}</p>`).join("")}
-    </div>
-  </div>
-  <div class="hover-div-r">
-  <p>v</p>
-  </div>
-</div>`
-    } 
+      e.target.nextSibling.className = "hover"
+    } else if (e.target.className === "react-player__preview" && !hoveredItem) {
+      setHoveredItem(true)
+      e.target.parentElement.className = "hover-vid"
+      e.target.parentElement.nextSibling.className = "hover"
+    }
   }
-  // const hover = (e) => {
-  //   console.log(e.target)
-  //   if (e.target.className === "large-vid") {
-  //     e.target.className += " l-hover-title"
-  //   } else if (e.target.className === "normal-vid") {
-  //     e.target.className += " n-hover-title"
-  //   }
-  // }
+
 
   const hoverOut = (e) => {
-    if (e.target.className.includes("player")) {
+    if (e.target.className === "hover-vid" && hoveredItem) {
+      setHoveredItem(false)
       e.target.className = "player"
-    } 
+      e.target.nextSibling.className = "hover hidden"
+    } else if (e.target.className === "react-player__preview" && hoveredItem) {
+      setHoveredItem(false)
+      e.target.parentElement.className = "player"
+      e.target.parentElement.nextSibling.className = "hover hidden"
+    }
+
   }
 
 
@@ -59,10 +44,10 @@ export default function ScrollingDiv({ genre, data, largeRow, set }) {
     allItems =
       items.map((title, i) => (
         <div key={title.imdb_id}
-        className={largeRow ? "large-vid" : "normal-vid"}
+          className={largeRow ? "large-vid" : "normal-vid"}
           // onClick={() => { set(title) }}
-          onMouseOver={(e) => hover(e, title)}
-          // onMouseLeave={(e) => hoverOut(e)}
+          onMouseOver={(e) => hover(e)}
+          onMouseOut={(e) => hoverOut(e)}
         >
           <ReactPlayer
             className="player"
@@ -71,6 +56,27 @@ export default function ScrollingDiv({ genre, data, largeRow, set }) {
             light={true}
             url={`https://www.youtube.com/embed/${title.youtube_trailer_key}`}
           />
+          <div className="hover hidden">
+            <div className="hover-div-l">
+              <div className="hover-details">
+                <p>P</p>
+                <p>L</p>
+                <p>U</p>
+                <p>D</p>
+              </div>
+              <div className="hover-rating">
+                <p>{title.imdb_rating}% match</p>
+                <p>{title.rated}</p>
+                <p>{title.runtime - 60 < 60 ? `1h ${title.runtime - 60}m` : `${title.runtime}m`}</p>
+              </div>
+              <div className="hover-genre">
+                {title.genres.map((g) => <p>{g}</p>)}
+              </div>
+            </div>
+            <div className="hover-div-r">
+              <p>v</p>
+            </div>
+          </div>
         </div>
       ))
   }
