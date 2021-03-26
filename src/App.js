@@ -61,6 +61,9 @@ function App() {
           </Route> */}
           <Route path="/films">
             <div className="categorys">
+            <MainVid data={
+              [data.Action, data.Adventure, data.Comedy, data.Drama, data.Family, data.Fantasy, data.Horror, data.Mystery, data.Romance, data.SciFi, data.Thriller]
+              } />
               <ScrollingDiv genre={"Action"} data={data.Action} largeRow={true} set={setSelectedItem} />
               <ScrollingDiv genre={"Adventure"} data={data.Adventure} set={setSelectedItem} />
               <ScrollingDiv genre={"Comedy"} data={data.Comedy} set={setSelectedItem} />
@@ -76,6 +79,9 @@ function App() {
           </Route>
           <Route path="/series">
             <div className="categorys">
+            <MainVid data={
+              [data.Crime, data.Documentary, data.Short, data.Sport, data.TVMovie, data.War]
+              } />
               <ScrollingDiv genre={"Crime"} data={data.Crime} largeRow={true} set={setSelectedItem} />
               <ScrollingDiv genre={"Documentary"} data={data.Documentary} set={setSelectedItem} />
               <ScrollingDiv genre={"Short"} data={data.Short} set={setSelectedItem} />
@@ -86,7 +92,9 @@ function App() {
           </Route>
           <Route path="/">
             {selectedItem?.title ? <ClickedVid title={selectedItem} set={setSelectedItem} /> : null}
-            <MainVid data={data} />
+            <MainVid data={
+              [data.Comedy, data.Crime, data.Drama, data.Horror, data.Mystery, data.Romance, data.Sport, data.TVMovie, data.War]
+              } />
             <div className="categorys">
               <ScrollingDiv genre={"Comedy"} data={data.Comedy} largeRow={true} set={setSelectedItem} />
               <ScrollingDiv genre={"Crime"} data={data.Crime} set={setSelectedItem} />

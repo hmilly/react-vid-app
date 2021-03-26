@@ -1,37 +1,27 @@
 import React, { useState, useEffect } from 'react'
-import ReactPlayer from 'react-player/lazy'
+import ReactPlayer from 'react-player'
 
 export default function ScrollingDiv({ genre, data, largeRow, set }) {
   const [items, setItems] = useState([])
   const [hoveredItem, setHoveredItem] = useState()
 
   const hover = (e) => {
-    console.log(e)
-    if (e.target.className === "player" && !hoveredItem) {
+    console.log("in", e)
+    if (e.target.className.includes("vidItem") && !hoveredItem) {
       setHoveredItem(true)
-      e.target.className = "hover-vid"
-      e.target.nextSibling.className = "hover"
-    } else if (e.target.className === "react-player__preview" && !hoveredItem) {
-      setHoveredItem(true)
-      e.target.parentElement.className = "hover-vid"
-      e.target.parentElement.nextSibling.className = "hover"
+      e.target.className = e.target.className.replace("vidItem", "hover-vid")
+      e.target.lastChild.className = "hover"
     }
   }
-
 
   const hoverOut = (e) => {
-    if (e.target.className === "hover-vid" && hoveredItem) {
+    console.log("out", e)
+    if (e.target.className.includes("hover-vid") && hoveredItem) {
       setHoveredItem(false)
-      e.target.className = "player"
-      e.target.nextSibling.className = "hover hidden"
-    } else if (e.target.className === "react-player__preview" && hoveredItem) {
-      setHoveredItem(false)
-      e.target.parentElement.className = "player"
-      e.target.parentElement.nextSibling.className = "hover hidden"
+      e.target.className = e.target.className.replace("hover-vid", "vidItem")
+      e.target.lastChild.className = "hover hidden"
     }
-
   }
-
 
   useEffect(() => {
     const getAllItems = async () =>
@@ -44,13 +34,12 @@ export default function ScrollingDiv({ genre, data, largeRow, set }) {
     allItems =
       items.map((title, i) => (
         <div key={title.imdb_id}
-          className={largeRow ? "large-vid" : "normal-vid"}
+          className={largeRow ? "l-vid vidItem" : "n-vid vidItem"}
           // onClick={() => { set(title) }}
-          onMouseOver={(e) => hover(e)}
-          onMouseOut={(e) => hoverOut(e)}
+          onMouseEnter={(e) => hover(e)}
+          onMouseLeave={(e) => hoverOut(e)}
         >
           <ReactPlayer
-            className="player"
             width="100%"
             height="100%"
             light={true}
@@ -59,10 +48,10 @@ export default function ScrollingDiv({ genre, data, largeRow, set }) {
           <div className="hover hidden">
             <div className="hover-div-l">
               <div className="hover-details">
-                <p>P</p>
-                <p>L</p>
-                <p>U</p>
-                <p>D</p>
+                <p>▶️</p>
+                <p>➕</p>
+                <p>👍</p>
+                <p>👎</p>
               </div>
               <div className="hover-rating">
                 <p>{title.imdb_rating}% match</p>

@@ -6,14 +6,11 @@ export default function MainVid({ data }) {
 
     useEffect(() => {
         const getMostPopular = async () => {
-            let mostPop = Object.entries(data).map(([key, value]) => {
-                return value.reduce((prev, curr) =>
-                    (parseInt(prev.vote_count) > parseInt(curr.vote_count)) ? prev : curr, 1
-                )
-            }).reduce((prev, curr) =>
+            let title = data[Math.floor(Math.random() * data.length)].reduce((prev, curr) =>
                 (parseInt(prev.vote_count) > parseInt(curr.vote_count)) ? prev : curr, 1
             )
-            setMostPopular(mostPop)
+
+            setMostPopular(title)
         }
         getMostPopular()
     }, [data])
@@ -23,7 +20,7 @@ export default function MainVid({ data }) {
             <ReactPlayer
                 className="m-vid"
                 url={`https://www.youtube.com/embed/${mostPopular.youtube_trailer_key}`}
-
+                playing={false}
             />
         </div>
     )
