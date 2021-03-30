@@ -14,6 +14,7 @@
   background-color: black;
   width: 100%;
   height: auto;
+  min-height: 100%;
   margin: 0 auto;
   overflow-x: scroll;
   overflow-y: none;
@@ -65,14 +66,70 @@
 .category-name{
   color: white;
   padding: 0 2%;
+  width: 100%;
 }
 
 .scrolling-div{
   display: flex;
+  flex-wrap: nowrap;
   width: 98%;
   overflow-x:scroll;
   margin: 0 1%;
   overflow-y: hidden;
+  scroll-behavior:smooth;
+}
+
+.mylistcat{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin-top: 5%;
+
+}
+.mylist{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  margin: 2%;
+  width: 100vw;
+  height: 100vh;
+}
+.galleryMessage{
+  display: flex;
+  color: rgba(255, 255, 255, 0.453);
+  width: 100%;
+  height: 100%;
+  padding-top: 15%;
+  justify-content: center;
+}
+.arrow{
+  position: absolute;
+  width: 6%;
+  height: 290px;
+  margin: 1%;
+  font-size: 90px;
+  background-color: rgba(0, 0, 0, 0.015);
+  border: rgba(0, 0, 0, 0) solid 1px;
+  color: rgba(255, 255, 255, 0);
+}
+.ar{
+  float: right;
+  left: 0;
+}
+.al{
+  float: left;
+  right: 0;
+}
+.arrow:hover{
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.138);
+  border: rgba(0, 0, 0, 0.104) solid 1px;
+  color: white;
+}
+.arrow:active, .arrow:focus{
+  outline:0;
 }
 
 .l-vid{
@@ -82,41 +139,43 @@
 .n-vid{
   min-width: 350px;
   min-height: 300px;
+  max-width: 350px;
+  max-height: 300px;
 }
 
 .vidItem{
   margin: 10px;
   padding: 70px 40px;
-  transition: 100ms;
+  transition: 300ms;
 }
 .react-player__preview{
-  margin-top: -30px;
+  margin-top: -50px;
   border: solid rgba(128, 128, 128, 0.212) 1px;
 }
 
 .hover-vid{
   margin: 0 5px;
+  width: 100%;
   padding: 60px 20px;
-  transition: 100ms;
+  transition: 300ms;
 }
 
 .hover{
   display: flex;
   width: 100%;
-  height: 90px;
-  margin: -15px 0 0 0;
+  height: 105px;
+  margin: -55px 0 0 0;
   background-color: black;
 }
 .hidden {
   visibility: hidden;
 }
 
-
 .hover-div-l{
   display: flex;
   flex-direction: column;
   color:white;
-  width: 70%;
+  width: 80%;
   height: 90px;
 }
 .hover-div-r{
@@ -125,7 +184,7 @@
   color:white;
   align-items: flex-end;
   padding: 2%;
-  width: 30%;
+  width: 20%;
   height: 90px;
 }
 .hover-div-r p{
@@ -140,6 +199,7 @@
 .hover-details, .hover-rating, .hover-genre{
   display: flex;
   width: 100%;
+  font-size: 15px;
   padding: 2% 5%;
   justify-content: flex-start;
 }
@@ -158,7 +218,8 @@
 .hover-details p:nth-child(1){
   border: white solid 1px;
   background-color: white;
-  color: grey;
+  color: rgba(0, 0, 0, 0.836);;
+  
 }
 .hover-rating p{
   margin-right: 6px;
@@ -174,6 +235,7 @@
   padding: 1px 0;
   margin-top: -4px;
   width: 27px;
+  height: 27px;
   text-align: center;
 }
 .hover-genre p{

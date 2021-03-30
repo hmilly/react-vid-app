@@ -1,26 +1,33 @@
 import React, { useState, useEffect } from 'react'
 import ReactPlayer from 'react-player'
 
-export default function ScrollingDiv({ genre, data, largeRow, set }) {
+export default function ScrollingDiv({ genre, data, largeRow, set, setul }) {
   const [items, setItems] = useState([])
-  const [hoveredItem, setHoveredItem] = useState()
+  const [clicked, setClicked] = useState(false)
+
+  const settitle = (e, title) => {
+    setul(title)
+    setClicked(!clicked)
+  }
 
   const hover = (e) => {
-    console.log("in", e)
-    if (e.target.className.includes("vidItem") && !hoveredItem) {
-      setHoveredItem(true)
+    if (e.target.className.includes("vidItem")) {
       e.target.className = e.target.className.replace("vidItem", "hover-vid")
       e.target.lastChild.className = "hover"
     }
   }
-
   const hoverOut = (e) => {
-    console.log("out", e)
-    if (e.target.className.includes("hover-vid") && hoveredItem) {
-      setHoveredItem(false)
+    if (e.target.className.includes("hover-vid")) {
       e.target.className = e.target.className.replace("hover-vid", "vidItem")
       e.target.lastChild.className = "hover hidden"
     }
+  }
+
+  const scrollLeft = (e) => {
+    e.target.parentElement.scrollLeft += 1000
+  }
+  const scrollRight = (e) => {
+    e.target.parentElement.scrollLeft -= 1000
   }
 
   useEffect(() => {
@@ -29,8 +36,8 @@ export default function ScrollingDiv({ genre, data, largeRow, set }) {
     getAllItems()
   }, [data])
 
-  let allItems
-  if (items) {
+  let allItems = <div className="galleryMessage">You haven't added any titles to your list yet.</div>
+  if (items && items.length !== 0) {
     allItems =
       items.map((title, i) => (
         <div key={title.imdb_id}
@@ -45,11 +52,12 @@ export default function ScrollingDiv({ genre, data, largeRow, set }) {
             light={true}
             url={`https://www.youtube.com/embed/${title.youtube_trailer_key}`}
           />
+
           <div className="hover hidden">
             <div className="hover-div-l">
               <div className="hover-details">
                 <p>▶️</p>
-                <p>➕</p>
+                <p onClick={(e) => settitle(e, title)}>{clicked ? "✔️" : "➕"}</p>
                 <p>👍</p>
                 <p>👎</p>
               </div>
@@ -72,9 +80,11 @@ export default function ScrollingDiv({ genre, data, largeRow, set }) {
 
   return (
     <>
-      <h1 className="category-name">{genre}</h1>
-      <div className="scrolling-div">
+      <h1 className="category-name">{genre === "mylist" ? "My List" : genre}</h1>
+      <div className={genre !== "mylist" ? "scrolling-div" : "mylist"}>
         {allItems}
+        <button className="arrow ar" onClick={(e) => scrollRight(e)}>⪡</button>
+        <button className="arrow al" onClick={(e) => scrollLeft(e)}>⪢</button>
       </div>
     </>
   )
