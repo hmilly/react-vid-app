@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useContext, useState, useEffect } from 'react';
 import ReactPlayer from 'react-player/lazy'
+import { store } from "../context"
 
-export default function ClickedVid({ title, set }) {
+export default function ClickedVid() {
+    const { state, setTitle } = useContext(store)
+    const title = state.selectedTitle
     return (
-        <div className="title-details" key={title.imdb_id}>
-            <button className="title-btn" onClick={() => set({})}>x</button>
-            <ReactPlayer
-                className="title-vid"
-                url={`https://www.youtube.com/embed/${title.youtube_trailer_key}`}
-                alt={title.title}
-            />
+        <div className="title-details">
+            <button className="title-btn" onClick={(e) => setTitle("close", e)}>x</button>
+            <div className="title-vid">
+                <ReactPlayer
+                    width="100%"
+                    height="100%"
+                    url={`https://www.youtube.com/embed/${title.youtube_trailer_key}`}
+                    alt={title.title}
+                />
+            </div>
             <h1 className="title-name">{title.title}</h1>
-
             <div className="title-info-div">
                 <div className="title-info-left">
                     <div className="title-specifics">
@@ -25,7 +30,7 @@ export default function ClickedVid({ title, set }) {
                             Typically for each title, this is where the synopsis would go. For the API I have used, there is no
                             synopsis for titles. This waffle is here instead of any title info, appologies if you wanted
                             to know more about each film. Please redirect to wikipedia or to IMDB or youtube directly. Thanks
-            </p>
+                        </p>
                     </div>
                 </div>
                 <div className="title-info-right">

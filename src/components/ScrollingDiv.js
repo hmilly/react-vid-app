@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import ReactPlayer from 'react-player'
+import { store } from "../context"
 
-export default function ScrollingDiv({ genre, data, largeRow, set, setul }) {
+export default function ScrollingDiv({ genre, data, largeRow }) {
+  const { state, setTitle, setUserList } = useContext(store)
   const [items, setItems] = useState([])
-  const [clicked, setClicked] = useState(false)
 
-  const settitle = (e, title) => {
-    setul(title)
-    setClicked(!clicked)
-  }
-
+    useEffect(() => {
+    const getAllItems = async () =>
+      data ? await setItems(data) : setItems(state.userList)
+    getAllItems()
+  }, [data, state.userList])
+  
   const hover = (e) => {
     if (e.target.className.includes("vidItem")) {
       e.target.className = e.target.className.replace("vidItem", "hover-vid")
@@ -22,19 +24,10 @@ export default function ScrollingDiv({ genre, data, largeRow, set, setul }) {
       e.target.lastChild.className = "hover hidden"
     }
   }
-
-  const scrollLeft = (e) => {
-    e.target.parentElement.scrollLeft += 1000
-  }
-  const scrollRight = (e) => {
-    e.target.parentElement.scrollLeft -= 1000
-  }
-
-  useEffect(() => {
-    const getAllItems = async () =>
-      await setItems(data)
-    getAllItems()
-  }, [data])
+  const setGreen = (e) => console.log(e)
+  const setRed = (e) => e.target.className.color = "red"
+  const scrollLeft = (e) => e.target.parentElement.scrollLeft += 1000
+  const scrollRight = (e) => e.target.parentElement.scrollLeft -= 1000
 
   let allItems = <div className="galleryMessage">You haven't added any titles to your list yet.</div>
   if (items && items.length !== 0) {
@@ -42,7 +35,7 @@ export default function ScrollingDiv({ genre, data, largeRow, set, setul }) {
       items.map((title, i) => (
         <div key={title.imdb_id}
           className={largeRow ? "l-vid vidItem" : "n-vid vidItem"}
-          // onClick={() => { set(title) }}
+          onClick={() => {  setTitle(title) }}
           onMouseEnter={(e) => hover(e)}
           onMouseLeave={(e) => hoverOut(e)}
         >
@@ -52,14 +45,13 @@ export default function ScrollingDiv({ genre, data, largeRow, set, setul }) {
             light={true}
             url={`https://www.youtube.com/embed/${title.youtube_trailer_key}`}
           />
-
           <div className="hover hidden">
             <div className="hover-div-l">
               <div className="hover-details">
                 <p>▶️</p>
-                <p onClick={(e) => settitle(e, title)}>{clicked ? "✔️" : "➕"}</p>
-                <p>👍</p>
-                <p>👎</p>
+                <p onClick={(e) => setUserList(title, e)}>➕</p>
+                <p onClick={(e) => setGreen(e)}>👍</p>
+                <p onClick={(e) => setRed(e)}>👎</p>
               </div>
               <div className="hover-rating">
                 <p>{title.imdb_rating}% match</p>
@@ -77,7 +69,6 @@ export default function ScrollingDiv({ genre, data, largeRow, set, setul }) {
         </div>
       ))
   }
-
   return (
     <>
       <h1 className="category-name">{genre === "mylist" ? "My List" : genre}</h1>
@@ -89,6 +80,3 @@ export default function ScrollingDiv({ genre, data, largeRow, set, setul }) {
     </>
   )
 }
-
-
-

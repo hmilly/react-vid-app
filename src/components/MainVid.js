@@ -17,7 +17,6 @@ export default function MainVid({ data }) {
         }
     }, [genre])
 
-
     return (
         < div className="mainvid" >
             <ReactPlayer
@@ -28,4 +27,3 @@ export default function MainVid({ data }) {
         </div>
     )
 }
-
