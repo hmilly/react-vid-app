@@ -1,9 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
 import Nav from './components/Nav';
 import MainVid from "./components/MainVid"
@@ -14,16 +10,11 @@ import { store } from "./context"
 function App() {
   const { state } = useContext(store)
   const [data, setData] = useState([])
+  const [popular, setPopular] = useState([])
 
   useEffect(() => {
     const getItems = async () => {
       await fetch("db.json")
-        //   //  fetch("https://movies-tvshows-data-imdb.p.rapidapi.com/?type=get-random-movies&page=6", {
-        //   //   "method": "GET",
-        //   //   "headers": {
-        // -------------------------------- update key info  -----------------------------------------
-        //   //   }
-        //   // })
         .then(res => res.json())
         .then(res => setData(res))
         .catch(err => console.error(err));
@@ -31,26 +22,38 @@ function App() {
     getItems()
   }, [])
 
+  useEffect(() => {
+    const select = () => {
+      if (data) {
+        let arr = []
+        for (let i in data) {
+          arr.push(data[i].reduce((prev, curr) =>
+            (parseInt(prev.vote_count) > (curr.vote_count ? parseInt(curr.vote_count) : 1)) ? prev : curr, 1)
+          )
+        }
+        setPopular(arr)
+      }
+    }
+    select()
+  }, [data])
+
   return (
     <Router>
       <div className="App">
         <Nav />
         <Switch>
           <Route path="/popular">
-          {state.seeComponent ? <ClickedVid /> : null}
-            <MainVid data={data} />
-              <ScrollingDiv genre={"Action"} data={data.Action} largeRow={true} />
+            {state.seeComponent ? <ClickedVid /> : null}
+            <ScrollingDiv genre={"Popular"} data={popular} largeRow={true} />
           </Route>
           <Route path="/films">
-          {state.seeComponent ? <ClickedVid /> : null}
+            {state.seeComponent ? <ClickedVid /> : null}
             <div className="categorys">
-              <MainVid data={
-                [
-                  data.Action, data.Adventure, data.Comedy,
-                  data.Drama, data.Family, data.Fantasy, data.Horror,
-                  data.Mystery, data.Romance, data.SciFi, data.Thriller
-                ]
-              } />
+              <MainVid data={[
+                data.Action, data.Adventure, data.Comedy,
+                data.Drama, data.Family, data.Fantasy, data.Horror,
+                data.Mystery, data.Romance, data.SciFi, data.Thriller
+              ]} path="films" />
               <ScrollingDiv genre={"Action"} data={data.Action} largeRow={true} />
               <ScrollingDiv genre={"Adventure"} data={data.Adventure} />
               <ScrollingDiv genre={"Comedy"} data={data.Comedy} />
@@ -66,15 +69,13 @@ function App() {
           </Route>
 
           <Route path="/series">
-           {state.seeComponent ? <ClickedVid /> : null}
+            {state.seeComponent ? <ClickedVid /> : null}
             <div className="categorys">
-              <MainVid data={
-                [
-                  data.Crime, data.Documentary,
-                  data.Short, data.Sport,
-                  data.TVMovie, data.War
-                ]
-              } />
+              <MainVid data={[
+                data.Crime, data.Documentary,
+                data.Short, data.Sport,
+                data.TVMovie, data.War
+              ]} path="series" />
               <ScrollingDiv genre={"Crime"} data={data.Crime} largeRow={true} />
               <ScrollingDiv genre={"Documentary"} data={data.Documentary} />
               <ScrollingDiv genre={"Short"} data={data.Short} />
@@ -91,14 +92,12 @@ function App() {
           </Route>
 
           <Route path="/">
-          {state.seeComponent ? <ClickedVid /> : null}
-            <MainVid data={
-              [
-                data.Comedy, data.Crime, data.Drama,
-                data.Horror, data.Mystery, data.Romance,
-                data.Sport, data.TVMovie, data.War
-              ]
-            } />
+            {state.seeComponent ? <ClickedVid /> : null}
+            <MainVid data={[
+              data.Comedy, data.Crime, data.Drama,
+              data.Horror, data.Mystery, data.Romance,
+              data.Sport, data.TVMovie, data.War
+            ]} path="main" />
             <div className="categorys">
               <ScrollingDiv genre={"Comedy"} data={data.Comedy} largeRow={true} />
               <ScrollingDiv genre={"Crime"} data={data.Crime} />

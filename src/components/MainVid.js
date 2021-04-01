@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import ReactPlayer from 'react-player/lazy'
 
-export default function MainVid({ data }) {
-    const [genre, setGenre] = useState([])
+export default function MainVid({ data, path }) {
     const [title, setTitle] = useState({})
 
     useEffect(() => {
-        setGenre(data[Math.floor(Math.random() * data.length)])
-    }, [data])
-
-    useEffect(() => {
+        const d = data
+        const genre = d[Math.floor(Math.random() * d.length)]
         if (genre) {
+            console.log("ran")
             const t = genre.reduce((prev, curr) =>
                 (parseInt(prev.vote_count) > (curr.vote_count ? parseInt(curr.vote_count) : 1)) ? prev : curr, 1)
             setTitle(t)
         }
-    }, [genre])
+    }, [path])
 
     return (
         < div className="mainvid" >

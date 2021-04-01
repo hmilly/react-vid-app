@@ -6,12 +6,12 @@ export default function ScrollingDiv({ genre, data, largeRow }) {
   const { state, setTitle, setUserList } = useContext(store)
   const [items, setItems] = useState([])
 
-    useEffect(() => {
+  useEffect(() => {
     const getAllItems = async () =>
       data ? await setItems(data) : setItems(state.userList)
     getAllItems()
   }, [data, state.userList])
-  
+
   const hover = (e) => {
     if (e.target.className.includes("vidItem")) {
       e.target.className = e.target.className.replace("vidItem", "hover-vid")
@@ -35,11 +35,12 @@ export default function ScrollingDiv({ genre, data, largeRow }) {
       items.map((title, i) => (
         <div key={title.imdb_id}
           className={largeRow ? "l-vid vidItem" : "n-vid vidItem"}
+
           onMouseEnter={(e) => hover(e)}
           onMouseLeave={(e) => hoverOut(e)}
         >
           <ReactPlayer
-            onClick={() => {  setTitle(title) }}
+            onClick={() => { setTitle(title) }}
             width="100%"
             height="100%"
             light={true}
@@ -71,7 +72,9 @@ export default function ScrollingDiv({ genre, data, largeRow }) {
   }
   return (
     <>
-      <h1 className="category-name">{genre === "mylist" ? "My List" : genre}</h1>
+      <h1 className={genre === "Popular" ? "popular category-name" : "category-name"}>
+        {genre === "mylist" ? "My List" : genre}
+      </h1>
       <div className={genre !== "mylist" ? "scrolling-div" : "mylist"}>
         {allItems}
         <button className="arrow ar" onClick={(e) => scrollRight(e)}>⪡</button>
