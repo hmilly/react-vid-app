@@ -35,11 +35,11 @@ export default function ScrollingDiv({ genre, data, largeRow }) {
       items.map((title, i) => (
         <div key={title.imdb_id}
           className={largeRow ? "l-vid vidItem" : "n-vid vidItem"}
-          onClick={() => {  setTitle(title) }}
           onMouseEnter={(e) => hover(e)}
           onMouseLeave={(e) => hoverOut(e)}
         >
           <ReactPlayer
+            onClick={() => {  setTitle(title) }}
             width="100%"
             height="100%"
             light={true}
